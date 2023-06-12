@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Docker bind mounts
+Infrastructure/Jenkins/jenkins_home
+
 # User-specific files
 *.rsuser
 *.suo
