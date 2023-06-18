@@ -9,4 +9,5 @@
 - [x] Add configuration to trigger Jenkins jobs from VS Code 👉 [commit](https://github.com/michalantolik/chemik-police/commit/eeb3cbc16f5a37c23fec785f4e35bcbf835bf2a6) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=757a2b77-e337-4e7a-9288-cfff8a89970c)
 - [x] Update Jenkinsfile to checkout, restore, build and publish 👉 [commit](https://github.com/michalantolik/chemik-police/commit/623e014a6a4ac327d4cdfaacb447285244a920cb)
 - [x] Add test projects with dummy tests (MSUnit, NUnit and xUnit) 👉 [commit](https://github.com/michalantolik/chemik-police/commit/f33165d2879f7fc4fe553c0a1005d5069f491b52)
+- [x] Update Jenkinsfile to run tests 👉 [commit](https://github.com/michalantolik/chemik-police/commit/52b8d10256fcefdc21894878d1a6e7ffe531628a)
 - [ ] ...
