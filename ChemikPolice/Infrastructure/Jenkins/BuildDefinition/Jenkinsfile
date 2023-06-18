@@ -17,6 +17,21 @@ pipeline{
                 sh 'dotnet build ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
             }
         }
+        stage('MSTest'){
+            steps{
+                sh 'dotnet test ChemikPolice/ChemikPoliceMsTests/ChemikPoliceMsTests.csproj'
+            }
+        }
+        stage('NUnit'){
+            steps{
+                sh 'dotnet test ChemikPolice/ChemikPoliceNUnitTests/ChemikPoliceNUnitTests.csproj'
+            }
+        }
+        stage('XUnit'){
+            steps{
+                sh 'dotnet test ChemikPolice/ChemikPoliceXUnitTests/ChemikPoliceXUnitTests.csproj'
+            }
+        }
         stage('Publish'){
             steps{
                 sh 'dotnet publish ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
