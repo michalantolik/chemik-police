@@ -3,7 +3,9 @@ pipeline{
 
     stages{
         stage('Hello'){
-            echo 'Hello'
+            steps{
+                echo 'Hello'
+            }
         }
         stage('Checkout'){
             steps{
@@ -11,7 +13,9 @@ pipeline{
             }
         }
         stage('World'){
-            echo 'World'
+            steps{
+                echo 'World'
+            }
         }
     }
 }
