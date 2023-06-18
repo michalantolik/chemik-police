@@ -9,17 +9,17 @@ pipeline{
         }
         stage('Restore'){
             steps{
-                sh 'dotnet restore'
+                sh 'dotnet restore ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
             }
         }
         stage('Build'){
             steps{
-                sh 'dotnet build'
+                sh 'dotnet build ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
             }
         }
         stage('Publish'){
             steps{
-                sh 'dotnet publish'
+                sh 'dotnet publish ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
             }
         }
     }
