@@ -7,4 +7,5 @@
 - [x] Create Dockerfile for Jenkins agent with NET SDK 7 👉 [commit](https://github.com/michalantolik/chemik-police/commit/96c57afbe87a626f4d0853268bab8af6abc84f2a) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=1e5f5331-6120-441e-bb51-c8def0c092f4) 👉 [microsoft](https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian)
 - [x] Generate Jenkinsfile from template 👉 [commit](https://github.com/michalantolik/chemik-police/commit/01209761ee9db70e7c712e085613973e5e69cbd8) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=757a2b77-e337-4e7a-9288-cfff8a89970c)
 - [x] Add configuration to trigger Jenkins jobs from VS Code 👉 [commit](https://github.com/michalantolik/chemik-police/commit/eeb3cbc16f5a37c23fec785f4e35bcbf835bf2a6) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=757a2b77-e337-4e7a-9288-cfff8a89970c)
+- [x] Update Jenkinsfile to checkout, restore, build and publish 👉 [commit](https://github.com/michalantolik/chemik-police/commit/623e014a6a4ac327d4cdfaacb447285244a920cb)
 - [ ] ...
