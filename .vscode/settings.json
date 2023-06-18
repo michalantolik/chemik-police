@@ -1,0 +1,16 @@
+{
+    "jenkins-runner.hostConfigs": {
+        "local": {
+            "url": "http://localhost:8081",
+            "user": "admin",
+            "useCrumbIssuer": true
+        }
+    },
+    "jenkins-runner.jobs": {
+        "ide": {
+            "runWith": "local",
+            "name": "chemik-police-pipeline",
+            "isDefault": true,            
+        }
+    }
+}
