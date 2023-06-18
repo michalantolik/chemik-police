@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemikPoliceApp", "ChemikPoliceApp\ChemikPoliceApp.csproj", "{719C1794-50A0-44E9-95EC-7378AB43BA10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChemikPoliceApp", "ChemikPoliceApp\ChemikPoliceApp.csproj", "{719C1794-50A0-44E9-95EC-7378AB43BA10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChemikPoliceMsTests", "ChemikPoliceMsTests\ChemikPoliceMsTests.csproj", "{8FCDA184-1FE3-432A-9B26-6471BE3506A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChemikPoliceNUnitTests", "ChemikPoliceNUnitTests\ChemikPoliceNUnitTests.csproj", "{25EB6E69-54B2-4DC4-8655-D056E373767C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChemikPoliceXUnitTests", "ChemikPoliceXUnitTests\ChemikPoliceXUnitTests.csproj", "{B12C256D-3C34-4DDF-98B5-5F3EFB651738}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{719C1794-50A0-44E9-95EC-7378AB43BA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{719C1794-50A0-44E9-95EC-7378AB43BA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{719C1794-50A0-44E9-95EC-7378AB43BA10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FCDA184-1FE3-432A-9B26-6471BE3506A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FCDA184-1FE3-432A-9B26-6471BE3506A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FCDA184-1FE3-432A-9B26-6471BE3506A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FCDA184-1FE3-432A-9B26-6471BE3506A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25EB6E69-54B2-4DC4-8655-D056E373767C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25EB6E69-54B2-4DC4-8655-D056E373767C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25EB6E69-54B2-4DC4-8655-D056E373767C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25EB6E69-54B2-4DC4-8655-D056E373767C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B12C256D-3C34-4DDF-98B5-5F3EFB651738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12C256D-3C34-4DDF-98B5-5F3EFB651738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12C256D-3C34-4DDF-98B5-5F3EFB651738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12C256D-3C34-4DDF-98B5-5F3EFB651738}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
