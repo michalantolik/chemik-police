@@ -17,10 +17,15 @@ pipeline{
                 sh 'dotnet build ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
             }
         }
+        stage('MSTest'){
+            steps{
+                sh'dotnet test ChemikPolice/ChemikPoliceMsTests/ChemikPoliceMsTests.csproj'
+            }
+        }
         stage('Publish'){
             steps{
                 sh 'dotnet publish ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
             }
-        }
+        },
     }
 }
