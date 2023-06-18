@@ -29,7 +29,7 @@ pipeline{
         }
         stage('XUnit'){
             steps{
-                sh 'dotnet test ChemikPolice/ChemikPoliceXUnitTests/ChemikPoliceXUnitTests.cspro'
+                sh 'dotnet test ChemikPolice/ChemikPoliceXUnitTests/ChemikPoliceXUnitTests.csproj'
             }
         }
         stage('Publish'){
