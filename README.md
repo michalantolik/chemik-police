@@ -5,4 +5,5 @@
 - [x] Add Docker Support within VS Code 👉 [commit](https://github.com/michalantolik/devops-aspnetcore-mvc/commit/d180a4a3c2761c9f9ef95f5e32689afc4a9bd47c) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=ad32d37c-211e-4b40-8560-34f683369147)
 - [x] Run Jenkins and MailHog in Docker 👉 [commit](https://github.com/michalantolik/devops-aspnetcore-mvc/commit/241ea66082715094bad98c4e13c85ba35d21aa3d) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=716dc35e-1797-4bb9-b160-1812b2bf878f)
 - [x] Create Dockerfile for Jenkins agent with NET SDK 7 👉 [commit](https://github.com/michalantolik/chemik-police/commit/96c57afbe87a626f4d0853268bab8af6abc84f2a) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=1e5f5331-6120-441e-bb51-c8def0c092f4) 👉 [microsoft](https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian)
+- [x] Generate Jenkinsfile from template 👉 [commit](https://github.com/michalantolik/chemik-police/commit/01209761ee9db70e7c712e085613973e5e69cbd8) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=757a2b77-e337-4e7a-9288-cfff8a89970c)
 - [ ] ...
