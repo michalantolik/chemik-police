@@ -10,5 +10,4 @@
 - [x] Update Jenkinsfile to checkout, restore, build and publish 👉 [commit](https://github.com/michalantolik/chemik-police/commit/623e014a6a4ac327d4cdfaacb447285244a920cb)
 - [x] Add test projects with dummy tests (MSUnit, NUnit and xUnit) 👉 [commit](https://github.com/michalantolik/chemik-police/commit/f33165d2879f7fc4fe553c0a1005d5069f491b52)
 - [x] Update Jenkinsfile to run tests 👉 [commit](https://github.com/michalantolik/chemik-police/commit/52b8d10256fcefdc21894878d1a6e7ffe531628a)
-- [x] Add SCM poll trigger to Jenkinsfile 👉 [commit](https://github.com/michalantolik/chemik-police/commit/89f3f1f75802f4043f1623f42ea8f704f85c462f) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=0a7a21a6-3d0e-44a8-b032-7195871e1aba) 👉 [pipeline syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
 - [ ] ...
