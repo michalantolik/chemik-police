@@ -2,19 +2,24 @@ pipeline{
     agent any
 
     stages{
-        stage('Hello'){
-            steps{
-                echo 'Hello'
-            }
-        }
         stage('Checkout'){
             steps{
                 git url: 'https://github.com/michalantolik/chemik-police.git', branch: 'main'
             }
         }
-        stage('World'){
+        stage('Restore'){
             steps{
-                echo 'World'
+                sh 'dotnet restore'
+            }
+        }
+        stage('Build'){
+            steps{
+                sh 'dotnet build'
+            }
+        }
+        stage('Publish'){
+            steps{
+                sh 'dotnet publish'
             }
         }
     }
