@@ -7,15 +7,14 @@
         }
     },
     "jenkins-runner.jobs": {
-        "ide-main": {
-            "runWith": "local",
-            "name": "chemik-police-pipeline",
-            "isDefault": true,            
-        },
         "ide-main-testing": {
             "runWith": "local",
             "name": "chemik-police-pipeline-testing",
             "isDefault": true,            
-        },        
+        },         
+        "ide-main": {
+            "runWith": "local",
+            "name": "chemik-police-pipeline",        
+        } 
     }
 }
