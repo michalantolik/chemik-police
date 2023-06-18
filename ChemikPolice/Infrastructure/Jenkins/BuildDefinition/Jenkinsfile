@@ -1,33 +1,26 @@
 pipeline{
     agent any
-    
+
     stages{
-        stage("A"){
+        stage('Checkout'){
             steps{
-                echo "========executing A========"
-            }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
+                git url: 'https://github.com/michalantolik/chemik-police.git', branch: 'main'
             }
         }
-    }
-    post{
-        always{
-            echo "========always========"
+        stage('Restore'){
+            steps{
+                sh 'dotnet restore ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
+            }
         }
-        success{
-            echo "========pipeline executed successfully ========"
+        stage('Build'){
+            steps{
+                sh 'dotnet build ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
+            }
         }
-        failure{
-            echo "========pipeline execution failed========"
+        stage('Publish'){
+            steps{
+                sh 'dotnet publish ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
+            }
         }
     }
 }
