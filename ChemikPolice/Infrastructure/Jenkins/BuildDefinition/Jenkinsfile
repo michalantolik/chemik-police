@@ -1,33 +1,17 @@
 pipeline{
     agent any
-    
+
     stages{
-        stage("A"){
+        stage('Hello'){
+            echo 'Hello'
+        }
+        stage('Checkout'){
             steps{
-                echo "========executing A========"
-            }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
+                git url: 'https://github.com/michalantolik/chemik-police.git', branch: 'main'
             }
         }
-    }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
+        staget('World'){
+            echo 'World'
         }
     }
 }
