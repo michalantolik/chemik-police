@@ -46,7 +46,7 @@ pipeline{
                     to: 'devops@acme.com',
                     recipientProviders: [upstreamDevelopers(), requestor()],
                     attachLog: true,
-                    compressLog true
+                    compressLog: true
             }
         }
     }
