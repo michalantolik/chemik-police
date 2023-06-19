@@ -39,9 +39,9 @@ pipeline{
         }
     }
     post{
-        changed{
+        always{
             script{
-                emailext subject: 'Job \'${JOB_NAME}\' (${BUILD_NUMBER}) is waiting for input.',
+                emailext subject: 'Job \'${JOB_NAME}\' (${BUILD_NUMBER}) ${currentBuild.result} is waiting for input.',
                     body: 'Please go to ${BUILD_URL} and verify the build.',
                     to: 'devops@acme.com',
                     recipientProviders: [upstreamDevelopers(), requestor()],
