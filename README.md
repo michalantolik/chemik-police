@@ -12,4 +12,5 @@
 - [x] Update Jenkinsfile to run tests 👉 [commit](https://github.com/michalantolik/chemik-police/commit/52b8d10256fcefdc21894878d1a6e7ffe531628a)
 - [x] Add SCM poll trigger to Jenkinsfile 👉 [commit](https://github.com/michalantolik/chemik-police/commit/89f3f1f75802f4043f1623f42ea8f704f85c462f) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=0a7a21a6-3d0e-44a8-b032-7195871e1aba) 👉 [pipeline syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
 - [x] Remove SCM poll trigger 👉 [commit](https://github.com/michalantolik/chemik-police/commit/3674aee54170d663ee375947e48ff732abe3edca)
+- [x] Send email notification about Jenkins job completion 👉 [commit](https://github.com/michalantolik/chemik-police/commit/b5c91e3df936008f003db279db9b7f6503aebb27) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=bd474e17-7775-4ea6-a014-35defd116017)
 - [ ] ...
