@@ -1,1 +1,1 @@
-docker compose up
+docker compose -p "jenkins-chemik-police" up
