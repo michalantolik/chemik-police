@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # Docker bind mounts
-ChemikPolice/DevOps/JenkinsServerLauncher/jenkins_home
+ChemikPolice/DevOps/JenkinsServerLocalLauncher/jenkins_home
 
 # User-specific files
 *.rsuser
