@@ -46,6 +46,3 @@ RUN echo \
 # Install Docker
 RUN apt-get update 
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-# Switch back to jenkins user
-USER jenkins
