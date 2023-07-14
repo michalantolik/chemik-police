@@ -1,8 +1,16 @@
 ##############################################################################################
-### Deploy to Azure Container Instances (ACI) - using Azure CLI
+### Deploy "ChemikPolice" webapp docker image to Azure Container Instances (ACI)
 ##############################################################################################
-
-# https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell
+#
+# IMAGE: michalantolik/chemik-police:latest
+# FQDN:  http://chemikpolice.westeurope.azurecontainer.io/
+# PORT:  80
+# DNS:   chemikpolice
+# IP:    public
+#
+# DOCS:  https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell
+#
+##############################################################################################
 
 ##############################################################################################
 ### Login to Azure
@@ -20,36 +28,41 @@ Set-AzureRmContext "My Sub"
 ### Deploy container instance to ACI
 ##############################################################################################
 
-$resourceGroup = "aci-chemikpolice-rg"
 $location = "westeurope"
-$containerGroupName="chemikpolice"
+$resourceGroup = "aci-chemikpolice-rg"
+$containerGroupName="chemikpolice-app"
 
-New-AzureRmResourceGroup -Name $resourceGroup -Location $location
+New-AzureRmResourceGroup `
+    -Name $resourceGroup `
+    -Location $location
 
-New-AzureRmContainerGroup -ResourceGroupName $resourceGroup `
+New-AzureRmContainerGroup `
+    -ResourceGroupName $resourceGroup `
     -Name $containerGroupName  `
     -Image michalantolik/chemik-police:latest   `
     -Port 80 `
     -IpAddressType Public `
-    -DnsNameLabel chemikpolice
+    -DnsNameLabel chemikpolice-app
 
 ##############################################################################################
 ### Check deployment status
 ##############################################################################################
 
-Get-AzureRmContainerGroup -ResourceGroupName $resourceGroup `
+Get-AzureRmContainerGroup `
+    -ResourceGroupName $resourceGroup `
     -Name $containerGroupName
 
 ##############################################################################################
 ### See the logs
 ##############################################################################################
 
-Get-AzureRmContainerInstanceLog -ResourceGroupName $resourceGroup `
+Get-AzureRmContainerInstanceLog `
+    -ResourceGroupName $resourceGroup `
     -ContainerGroupName $containerGroupName `
 
 ##############################################################################################
-### Browse "DemoApp" running in container in ACI in webbrowse
+### Browse "ChemikPolice" webapp running in container in ACI (in web browser)
 ##############################################################################################
 
 # Use FQDN:        chemikpolice.westeurope.azurecontainer.io
-# Use Public IP:   Find assigned IP address in Azure portal ...
+# Use Public IP:   Find assigned public IP address in Azure portal ...

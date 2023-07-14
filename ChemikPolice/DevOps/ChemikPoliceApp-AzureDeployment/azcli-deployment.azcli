@@ -1,8 +1,16 @@
 ##############################################################################################
-### Deploy to Azure Container Instances (ACI) - using Azure CLI
+### Deploy "ChemikPolice" webapp docker image to Azure Container Instances (ACI)
 ##############################################################################################
-
-# https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart
+#
+# IMAGE: michalantolik/chemik-police:latest
+# FQDN:  http://chemikpolice.westeurope.azurecontainer.io/
+# PORT:  80
+# DNS:   chemikpolice
+# IP:    public
+#
+# DOCS:  https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart 
+#
+##############################################################################################
 
 ##############################################################################################
 ### Login to Azure
@@ -20,33 +28,41 @@ az account set -s "My Sub"
 ### Deploy container instance to ACI
 ##############################################################################################
 
-$resourceGroup = "aci-chemikpolice-rg"
 $location = "westeurope"
-$containerGroupName="chemikpolice"
+$resourceGroup = "aci-chemikpolice-rg"
+$containerGroupName="chemikpolice-app"
 
-az group create -n $resourceGroup -l $location
+az group create `
+    --name $resourceGroup `
+    --location $location
 
-az container create `-g $resourceGroup -n $containerGroupName `
+az container create `
+    --resource-group $resourceGroup `
+    --name $containerGroupName `
     --image michalantolik/chemik-police:latest `
     --ports 80 `
     --ip-address public `
-    --dns-name-label chemikpolice
+    --dns-name-label chemikpolice-app
 
 ##############################################################################################
 ### Check deployment status
 ##############################################################################################
 
-az container show -g $resourceGroup -n $containerGroupName
+az container show `
+    --resource-group $resourceGroup `
+    --name $containerGroupName
 
 ##############################################################################################
 ### See the logs
 ##############################################################################################
 
-az container logs -g $resourceGroup -n $containerGroupName
+az container logs `
+    --resource-group $resourceGroup `
+    --name $containerGroupName
 
 ##############################################################################################
-### Browse "DemoApp" running in container in ACI in webbrowse
+### Browse "ChemikPolice" webapp running in container in ACI (in web browser)
 ##############################################################################################
 
 # Use FQDN:        chemikpolice.westeurope.azurecontainer.io
-# Use Public IP:   Find assigned IP address in Azure portal ...
+# Use Public IP:   Find assigned public IP address in Azure portal ...
