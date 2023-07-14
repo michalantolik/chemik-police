@@ -1,5 +1,10 @@
 ##############################################################################################
 ### Deploy "ChemikPolice" webapp docker image to Azure Container Instances (ACI)
+#
+# TODO: Migrate this script from AzureRM to Az
+#
+# - https://learn.microsoft.com/en-us/powershell/azure/migrate-from-azurerm-to-az?view=azps-10.1.0
+#
 ##############################################################################################
 #
 # IMAGE: michalantolik/chemik-police:latest
