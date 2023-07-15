@@ -2,16 +2,11 @@
 ### Deploy "ChemikPolice" webapp docker image to Azure Container Instances (ACI)
 #################################################################################################################
 #
-# TODO: Migrate this script from AzureRM to Az
-# DOCS: https://learn.microsoft.com/en-us/powershell/azure/migrate-from-azurerm-to-az?view=azps-10.1.0
-#
-#################################################################################################################
-#
 # IMAGE: michalantolik/chemik-police:latest
 # FQDN:  http://chemikpolice.westeurope.azurecontainer.io/
 # PORT:  80
 # DNS:   chemikpolice-app
-# IP:    public
+# IP:    Public
 #
 # DOCS:  https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell
 #
@@ -21,7 +16,7 @@
 ### Login to Azure
 #################################################################################################################
 
-Login-AzureRmAccount
+Connect-AzAccount
 
 #################################################################################################################
 ### Select subscription
@@ -34,36 +29,47 @@ Set-AzureRmContext "My Sub"
 #################################################################################################################
 
 $location = "westeurope"
-$resourceGroup = "aci-chemikpolice-rg"
+$resourceGroupName = "aci-chemikpolice-rg"
 $containerGroupName="chemikpolice-app"
+$containerName="chemikpolice-app-1"
 
-New-AzureRmResourceGroup `
-    -Name $resourceGroup `
+New-AzResourceGroup `
+    -Name $resourceGroupName `
     -Location $location
 
-New-AzureRmContainerGroup `
-    -ResourceGroupName $resourceGroup `
-    -Name $containerGroupName  `
-    -Image michalantolik/chemik-police:latest   `
-    -Port 80 `
-    -IpAddressType Public `
-    -DnsNameLabel chemikpolice-app
+$port = New-AzContainerInstancePortObject -Port 80 -Protocol TCP
+
+$container = New-AzContainerInstanceObject `
+    -Name $containerName `
+    -Image "michalantolik/chemik-police:latest" `
+    -Port $port
+
+New-AzContainerGroup `
+    -Name $containerGroupName `
+    -ResourceGroupName $resourceGroupName `
+    -Container $container `
+    -Location $location `
+    -IPAddressType Public `
+    -IPAddressDnsNameLabel "chemikpolice-app"
 
 #################################################################################################################
 ### Check deployment status
 #################################################################################################################
 
-Get-AzureRmContainerGroup `
-    -ResourceGroupName $resourceGroup `
+$containerGroup = Get-AzContainerGroup `
+    -ResourceGroupName $resourceGroupName `
     -Name $containerGroupName
+
+$containerGroup.ProvisioningState
 
 #################################################################################################################
 ### See the logs
 #################################################################################################################
 
-Get-AzureRmContainerInstanceLog `
-    -ResourceGroupName $resourceGroup `
+Get-AzContainerInstanceLog `
     -ContainerGroupName $containerGroupName `
+    -ContainerName $containerName `
+    -ResourceGroup $resourceGroupName
 
 #################################################################################################################
 ### Browse "ChemikPolice" webapp running in container in ACI (in web browser)
