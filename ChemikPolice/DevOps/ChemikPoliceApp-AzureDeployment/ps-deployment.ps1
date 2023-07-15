@@ -2,6 +2,8 @@
 ### Deploy "ChemikPolice" webapp docker image to Azure Container Instances (ACI)
 #################################################################################################################
 #
+# DEPLOYMENT_METHOD: PowerShell (using "Az" module)
+#
 # IMAGE: michalantolik/chemik-police:latest
 # FQDN:  http://chemikpolice.westeurope.azurecontainer.io/
 # PORT:  80

@@ -2,6 +2,8 @@
 ### Deploy "ChemikPolice" webapp docker image to Azure Container Instances (ACI)
 #################################################################################################################
 #
+# DEPLOYMENT_METHOD: Azure CLI (pure)
+#
 # IMAGE: michalantolik/chemik-police:latest
 # FQDN:  http://chemikpolice.westeurope.azurecontainer.io/
 # PORT:  80
@@ -30,11 +32,10 @@ az account set -s "My Sub"
 
 $location = "westeurope"
 $resourceGroupName = "aci-chemikpolice-rg"
-$resourceGroup = "aci-chemikpolice-rg"
 $containerGroupName="chemikpolice-app"
 
 az group create `
-    --name $resourceGroup `
+    --name $resourceGroupName `
     --location $location
 
 az container create `
