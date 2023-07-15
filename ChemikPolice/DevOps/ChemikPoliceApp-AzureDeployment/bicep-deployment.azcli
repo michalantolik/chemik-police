@@ -1,0 +1,76 @@
+#################################################################################################################
+### Deploy "ChemikPolice" webapp docker image to Azure Container Instances (ACI)
+#################################################################################################################
+#
+# DEPLOYMENT_METHOD: Bicep Template (from Azure CLI)
+#
+# IMAGE: michalantolik/chemik-police:latest
+# FQDN:  http://chemikpolice.westeurope.azurecontainer.io/
+# PORT:  80
+# DNS:   chemikpolice-app
+# IP:    Public
+#
+# DOCS:  https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-bicep?tabs=CLI
+#
+#################################################################################################################
+
+#################################################################################################################
+### Login to Azure
+#################################################################################################################
+
+az login
+
+#################################################################################################################
+### Select subscription
+#################################################################################################################
+
+az account set -s "My Sub"
+
+#################################################################################################################
+### Deploy the Bicep file
+#################################################################################################################
+
+$location = "westeurope"
+$resourceGroupName = "aci-chemikpolice-rg"
+$containerGroupName = "chemikpolice-app"
+
+# Deploy Azure Resources Group
+az deployment sub create `
+    --location $location `
+    --template-file "bicep-template-rg.bicep" --what-if
+
+az deployment sub create `
+    --location $location `
+    --template-file "bicep-template-rg.bicep"    
+
+# Deploy Azure Container Group (ACI service)
+az deployment group create `
+    --resource-group $resourceGroupName `
+    --template-file "bicep-template-aci.bicep"  --what-if
+
+az deployment group create `
+    --resource-group $resourceGroupName `
+    --template-file "bicep-template-aci.bicep"
+
+#################################################################################################################
+### Check deployment status
+#################################################################################################################
+
+az container show `
+    --resource-group $resourceGroup `
+    --name $containerGroupName
+
+#################################################################################################################
+### See the logs
+#################################################################################################################
+
+az container logs `
+    --resource-group $resourceGroup `
+    --name $containerGroupName
+
+#################################################################################################################
+### Browse "ChemikPolice" webapp running in container in ACI (in web browser)
+#################################################################################################################
+
+# Use FQDN:        chemikpolice-app.westeurope.azurecontainer.io
+# Use Public IP:   Find assigned public IP address in Azure portal ...
