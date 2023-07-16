@@ -11,7 +11,7 @@
         },
         "rgName": {
             "type": "string",
-            "defaultValue": "aci-chemikpolice-rg",
+            "defaultValue": "[deployment().location]",
             "metadata": {
                 "description": "RG Name"
             }

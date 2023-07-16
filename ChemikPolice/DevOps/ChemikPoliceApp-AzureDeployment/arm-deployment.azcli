@@ -30,34 +30,39 @@ az account set -s "My Sub"
 ### Deploy the Bicep file
 #################################################################################################################
 
-$location = "westeurope"
+$resourceGroupLocation = "westeurope"
 $resourceGroupName = "aci-chemikpolice-rg"
 $containerGroupName = "chemikpolice-app"
+$containerName = "chemikpolice-app-1"
 
 # Deploy Azure Resources Group
 az deployment sub create `
-    --location $location `
+    --location $resourceGroupLocation `
+    --name $resourceGroupName `
     --template-file "arm-template-rg.json" --what-if
 
 az deployment sub create `
-    --location $location `
+    --location $resourceGroupLocation `
+    --name $resourceGroupName `
     --template-file "arm-template-rg.json"  
 
 # Deploy Azure Container Group (ACI service)
 az deployment group create `
     --resource-group $resourceGroupName `
-    --template-file "arm-template-aci.json"  --what-if
+    --template-file "arm-template-aci.json" `
+    --parameters containerGroupName=$containerGroupName containerName=$containerName --what-if    
 
 az deployment group create `
     --resource-group $resourceGroupName `
-    --template-file "arm-template-aci.json"
+    --template-file "arm-template-aci.json" `
+    --parameters containerGroupName=$containerGroupName containerName=$containerName    
 
 #################################################################################################################
 ### Check deployment status
 #################################################################################################################
 
 az container show `
-    --resource-group $resourceGroup `
+    --resource-group $resourceGroupName `
     --name $containerGroupName
 
 #################################################################################################################
@@ -65,7 +70,7 @@ az container show `
 #################################################################################################################
 
 az container logs `
-    --resource-group $resourceGroup `
+    --resource-group $resourceGroupName `
     --name $containerGroupName
 
 #################################################################################################################

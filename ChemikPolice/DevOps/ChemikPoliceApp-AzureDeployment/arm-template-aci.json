@@ -11,14 +11,12 @@
         },
         "containerGroupName": {
             "type": "string",
-            "defaultValue": "chemikpolice-app",
             "metadata": {
                 "description": "Container group name"
             }
         },
         "containerName": {
             "type": "string",
-            "defaultValue": "chemikpolice-app-1",
             "metadata": {
                 "description": "Container name"
             }
