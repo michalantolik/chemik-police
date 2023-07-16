@@ -1,11 +1,11 @@
-@description('westeurope')
+@description('Container group location')
 param location string = resourceGroup().location
 
 @description('Container group name')
-param containerGroupName string = 'chemikpolice-app'
+param containerGroupName string
 
 @description('Container name')
-param containerName string = 'chemikpolice-app-1'
+param containerName string
 
 resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
   name: containerGroupName

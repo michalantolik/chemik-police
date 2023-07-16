@@ -30,27 +30,32 @@ az account set -s "My Sub"
 ### Deploy the Bicep file
 #################################################################################################################
 
-$location = "westeurope"
+$resourceGroupLocation = "westeurope"
 $resourceGroupName = "aci-chemikpolice-rg"
 $containerGroupName = "chemikpolice-app"
+$containerName = "chemikpolice-app-1"
 
 # Deploy Azure Resources Group
 az deployment sub create `
-    --location $location `
+    --location $resourceGroupLocation `
+    --name $resourceGroupName `
     --template-file "bicep-template-rg.bicep" --what-if
 
 az deployment sub create `
-    --location $location `
-    --template-file "bicep-template-rg.bicep"    
+    --location $resourceGroupLocation `
+    --name $resourceGroupName `
+    --template-file "bicep-template-rg.bicep"
 
 # Deploy Azure Container Group (ACI service)
 az deployment group create `
     --resource-group $resourceGroupName `
-    --template-file "bicep-template-aci.bicep"  --what-if
+    --template-file "bicep-template-aci.bicep" `
+    --parameters containerGroupName=$containerGroupName containerName=$containerName --what-if
 
 az deployment group create `
     --resource-group $resourceGroupName `
-    --template-file "bicep-template-aci.bicep"
+    --template-file "bicep-template-aci.bicep" `
+    --parameters containerGroupName=$containerGroupName containerName=$containerName
 
 #################################################################################################################
 ### Check deployment status
