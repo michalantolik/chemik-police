@@ -11,7 +11,7 @@
         },
         "rgName": {
             "type": "string",
-            "defaultValue": "[deployment().location]",
+            "defaultValue": "[deployment().name]",
             "metadata": {
                 "description": "RG Name"
             }
