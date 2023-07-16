@@ -62,7 +62,7 @@ az deployment group create `
 #################################################################################################################
 
 az container show `
-    --resource-group $resourceGroup `
+    --resource-group $resourceGroupName `
     --name $containerGroupName
 
 #################################################################################################################
@@ -70,7 +70,7 @@ az container show `
 #################################################################################################################
 
 az container logs `
-    --resource-group $resourceGroup `
+    --resource-group $resourceGroupName `
     --name $containerGroupName
 
 #################################################################################################################
