@@ -1,6 +1,34 @@
 # chemik-police
 
-## Tasks
+## Repository overview
+
+The purpose of this repository is to practice and present various DevOps related tools and technologies.
+
+It contains quite an empty example ASP.NET Core web application and various DevOps files and scripts (Infratructure as Code).
+
+The motivation is to use as many DevOps tools and technologies in this repo and it is possible - which is on purpose redundant.
+
+This is just to show the various tools and techniques used to achieve the same goals.
+
+## How this repository is being developed
+
+I am extending this repository as I am learning new DevOps stuff - mainly from Pluralsight courses.
+
+This is done to make it possible to come back to what I have already learnt and to quickly refresh my skills by looking at working examples.
+
+## Technology stack
+
+- NET 7.0
+- ARM Templates
+- Azure
+- Azure CLI
+- Azure Container Instances
+- Bicep
+- Docker
+- Jenkins CI/CD
+- PowerShell
+
+## Practiced tasks
 - [x] Create example ASP.NET Core webapp (NET 7) 👉 [commit](https://github.com/michalantolik/devops-aspnetcore-mvc/commit/6ec382cd81a8ffb0fe266ce239df693f784576b4)
 - [x] Add Docker support within VS Code 👉 [commit](https://github.com/michalantolik/devops-aspnetcore-mvc/commit/d180a4a3c2761c9f9ef95f5e32689afc4a9bd47c) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=ad32d37c-211e-4b40-8560-34f683369147)
 - [x] Run Jenkins and MailHog in Docker 👉 [commit](https://github.com/michalantolik/devops-aspnetcore-mvc/commit/241ea66082715094bad98c4e13c85ba35d21aa3d) 👉 [pluralsight](https://app.pluralsight.com/course-player?clipId=716dc35e-1797-4bb9-b160-1812b2bf878f)
