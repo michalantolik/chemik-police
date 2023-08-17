@@ -1,5 +1,7 @@
 ####################################################################################
-# RG + Storage Account + File Share
+# RG + Storage Account + File Shares
+#
+# mount_paths: "/var/jenkins_home", "/var/run/docker.sock"
 ####################################################################################
 
 variable "main_resource_group_location" {
@@ -20,10 +22,16 @@ variable "main_storage_account_name" {
   default = "michalantolikstorage"
 }
 
-variable "main_file_share_name" {
+variable "jenkinshome_file_share_name" {
   type = string
-  description = "Name of the Azure File Share within Azure Storage Account"
-  default = "chemikpolice-jenkinshome"
+  description = "Name of the Azure File Share for mounting '/var/jenkins_home' from the docker container"
+  default = "chemikpolice-jenkins-home"
+}
+
+variable "dockrersocket_file_share_name" {
+  type = string
+  description = "Name of the Azure File Share for mounting '/var/run/docker.sock' from the docker container"
+  default = "chemikpolice-dockerd-socket"
 }
 
 ####################################################################################

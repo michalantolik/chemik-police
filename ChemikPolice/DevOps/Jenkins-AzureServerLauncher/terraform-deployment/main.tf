@@ -8,7 +8,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=3.0.0"
+      version = "=3.69.0"
     }
   }
 }
@@ -19,7 +19,9 @@ provider "azurerm" {
 }
 
 ####################################################################################
-# RG + Storage Account + File Share
+# RG + Storage Account + File Shares
+#
+# mount_paths: "/var/jenkins_home", "/var/run/docker.sock"
 ####################################################################################
 
 # Deploy Azure Resources Group
@@ -37,9 +39,16 @@ resource "azurerm_storage_account" "main" {
   account_replication_type = "LRS"
 }
 
-# Deploy Azure File Share
-resource "azurerm_storage_share" "main" {
-  name = var.main_file_share_name
+# Deploy Azure File Share for mounting "/var/jenkins_home" from the docker container
+resource "azurerm_storage_share" "jenkinshome" {
+  name = var.jenkinshome_file_share_name
+  storage_account_name = azurerm_storage_account.main.name
+  quota = 1
+}
+
+# Deploy Azure File Share for mounting "/var/run/docker.sock" from the docker container
+resource "azurerm_storage_share" "dockersocket" {
+  name = var.dockrersocket_file_share_name
   storage_account_name = azurerm_storage_account.main.name
   quota = 1
 }
@@ -74,15 +83,23 @@ resource "azurerm_container_group" "aci" {
     memory = "1.5"
 
     volume {
-      name = "jenkins-home-volume"
+      name                 = "jenkins-home-volume"
+      mount_path           = "/var/jenkins_home"
+      read_only            = false      
+      share_name           = azurerm_storage_share.jenkinshome.name
+      storage_account_name = azurerm_storage_account.main.name
+      storage_account_key  = azurerm_storage_account.main.primary_access_key
+    }
 
-      #azure_file {
-        share_name           = azurerm_storage_share.main.name
-        storage_account_name = azurerm_storage_account.main.name
-        storage_account_key  = azurerm_storage_account.main.primary_access_key
-        read_only            = false
-        mount_path           = "/var/jenkins_home"
-      #}
+    # TODO: Investigate Error which occurrs during "terraform apply" ...
+    #
+    # Error: exactly one of `empty_dir` volume, `git_repo` volume, `secret` volume ...
+    # ... or storage account volume (`share_name`, `storage_account_name`, and `storage_account_key`) ...
+    # ... must be specified
+    volume {
+      name                 = "docker-socket-volume"
+      mount_path           = "/var/run/docker.sock"
+      #empty_dir            = true
     }
 
     ports {
