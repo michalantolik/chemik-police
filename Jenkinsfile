@@ -3,47 +3,16 @@ pipeline{
 
     stages{
         //Implicit 'Checkout' stage
-        stage('Restore'){
-            steps{
-                sh 'dotnet restore ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
-            }
-        }
-        stage('Build'){
-            steps{
-                sh 'dotnet build ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
-            }
-        }
-        stage('MSTest'){
-            steps{
-                sh 'dotnet test ChemikPolice/ChemikPoliceMsTests/ChemikPoliceMsTests.csproj'
-            }
-        }
-        stage('NUnit'){
-            steps{
-                sh 'dotnet test ChemikPolice/ChemikPoliceNUnitTests/ChemikPoliceNUnitTests.csproj'
-            }
-        }
-        stage('XUnit'){
-            steps{
-                sh 'dotnet test ChemikPolice/ChemikPoliceXUnitTests/ChemikPoliceXUnitTests.csproj'
-            }
-        }
-        stage('Publish'){
-            steps{
-                sh 'dotnet publish ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
+        stage('Docker Build') {
+            steps {
+                sh(script: 'docker images -a')
+                sh(script: """
+                    docker images -a
+                    docker build -f ChemikPolice/ChemikPoliceApp/Dockerfile -t michalantolik/chemik-police:latest .
+                    docker build -f ChemikPolice/ChemikPoliceApp/Dockerfile -t michalantolik/chemik-police:1.0 .
+                    docker images -a
+                """)
             }
         }
     }
-    // post{
-    //     always{
-    //         script{
-    //             emailext subject: "Job \'${JOB_NAME}\' (${BUILD_NUMBER}) ${currentBuild.result} finished its execution.",
-    //                 body: "Please go to ${BUILD_URL} to see the details.",
-    //                 to: "devops@acme.com",
-    //                 recipientProviders: [upstreamDevelopers(), requestor()],
-    //                 attachLog: true,
-    //                 compressLog: true
-    //         }
-    //     }
-    // }
 }
