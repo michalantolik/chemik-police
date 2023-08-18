@@ -14,5 +14,10 @@ pipeline{
                 """)
             }
         }
+        stage('Docker Run') {
+            steps {
+                sh(script: 'docker container run -d --name chemikpolice -p 32769:80 michalantolik/chemik-police:latest')
+            }
+        }        
     }
 }
