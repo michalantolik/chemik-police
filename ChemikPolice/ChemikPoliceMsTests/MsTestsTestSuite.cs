@@ -12,7 +12,7 @@ namespace ChemikPoliceMsTests
         [TestMethod]
         public void Test_2()
         {
-            Assert.IsTrue(true);
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
