@@ -3,7 +3,7 @@ do {
     $count++
     Write-Output "[$env:STAGE_NAME] Testing chemikpolice container [Attempt: $count]"
     
-    $testStart = Invoke-WebRequest -Uri http://localhost:32769
+    $testStart = Invoke-WebRequest -Uri http://host.docker.internal:32769
     
     if ($testStart.statuscode -eq '200') {
         $started = $true
