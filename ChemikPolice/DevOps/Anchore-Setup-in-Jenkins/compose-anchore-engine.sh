@@ -1,7 +1,5 @@
 #! /bin/sh
 
-pwd
-
 mkdir anchore
 cd anchore
 
@@ -9,5 +7,3 @@ curl -O https://engine.anchore.io/docs/quickstart/docker-compose.yaml > docker-c
 docker compose up -d
 
 cd ..
-
-pwd
