@@ -17,7 +17,7 @@ pipeline{
                 failure {
                     echo "Restore stage failed :("
                 }
-            }            
+            }
         }
 
         stage('Dotnet Build'){
@@ -31,7 +31,7 @@ pipeline{
                 failure {
                     echo "Build stage failed :("
                 }
-            }              
+            } 
         }
 
         stage('Run MSTest tests'){
@@ -45,7 +45,7 @@ pipeline{
                 failure {
                     echo "MSTest stage failed :("
                 }
-            }             
+            }
         }
 
         stage('Run NUnit tests'){
@@ -59,7 +59,7 @@ pipeline{
                 failure {
                     echo "NUnit stage failed :("
                 }
-            }             
+            }
         }
 
         stage('Run XUnit tests'){
@@ -73,7 +73,7 @@ pipeline{
                 failure {
                     echo "XUnit stage failed :("
                 }
-            }             
+            }
         }        
 
         stage('Build Image') {
@@ -93,13 +93,37 @@ pipeline{
                 failure {
                     echo "Docker Build stage failed :("
                 }
-            }              
+            }
         }
 
         stage('Vulerability scan with Trivy') {
             steps {
                 sh 'trivy image michalantolik/chemik-police:latest'
                 sh 'trivy image michalantolik/chemik-police:1.0'
+            }
+            post {
+                success {
+                    echo "Vulerability scan with Trivy stage succeedeed :)"
+                }
+                failure {
+                    echo "Vulerability scan with Trivy stage failed :("
+                }
+            }
+        }        
+
+        stage('Vulerability scan with Anchore') {
+            steps {
+                sh "echo 'michalantolik/chemik-police:latest' > anchore_images"
+                sh "echo 'michalantolik/chemik-police:1.0' >> anchore_images"
+                anchore name: 'anchore_images'
+            }
+            post {
+                success {
+                    echo "Vulerability scan with Anchore stage succeedeed :)"
+                }
+                failure {
+                    echo "Vulerability scan with Anchore stage failed :("
+                }
             }
         }        
 
@@ -114,7 +138,7 @@ pipeline{
                 failure {
                     echo "Docker Run stage failed :("
                 }
-            }               
+            } 
         }
 
         stage('Ping Containerized App') {
@@ -133,7 +157,7 @@ pipeline{
                 failure {
                     echo "Ping App stage failed :("
                 }
-            }   
+            }
         }
 
         stage('Stop Container ') {
@@ -147,7 +171,7 @@ pipeline{
                 failure {
                     echo "Docker Stop stage failed :("
                 }
-            }               
+            }
         }
 
         stage('Remove Container') {
@@ -161,7 +185,7 @@ pipeline{
                 failure {
                     echo "Docker Remove stage failed :("
                 }
-            }               
+            }
         }
 
         stage('Push Container') {
@@ -193,5 +217,4 @@ pipeline{
             }
         }
     }
-
 }
