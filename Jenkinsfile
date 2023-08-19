@@ -96,6 +96,13 @@ pipeline{
             }              
         }
 
+        stage('Vulerability scan with Trivy') {
+            steps {
+                sh 'trivy image michalantolik/chemik-police:latest'
+                sh 'trivy image michalantolik/chemik-police:1.0'
+            }
+        }        
+
         stage('Run Container') {
             steps {
                 sh(script: 'docker container run -d --name chemikpolice -p 32769:80 michalantolik/chemik-police:latest')
