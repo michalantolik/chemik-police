@@ -1,9 +1,9 @@
 #! /bin/sh
 
-RUN export ANCHORE_CLI_URL=http://host.docker.internal:8228/v1
-RUN export ANCHORE_CLI_USER=admin
-RUN export ANCHORE_CLI_PASS=foobar
-RUN export ANCHORE_CLI_SSL_VERIFY=n
+export ANCHORE_CLI_URL=http://host.docker.internal:8228/v1
+export ANCHORE_CLI_USER=admin
+export ANCHORE_CLI_PASS=foobar
+export ANCHORE_CLI_SSL_VERIFY=n
 
 # IMPORTANT:
 #
