@@ -1,4 +1,5 @@
 pipeline{
+    
     agent any
 
     stages{
@@ -156,4 +157,18 @@ pipeline{
             }               
         }  
     }
+
+    post{
+        always{
+            script{
+                emailext subject: "Job \'${JOB_NAME}\' (${BUILD_NUMBER}) ${currentBuild.result} finished its execution.",
+                    body: "Please go to ${BUILD_URL} to see the details.",
+                    to: "devops@acme.com",
+                    recipientProviders: [upstreamDevelopers(), requestor()],
+                    attachLog: true,
+                    compressLog: true
+            }
+        }
+    }
+    
 }
