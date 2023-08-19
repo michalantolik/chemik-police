@@ -6,7 +6,7 @@ pipeline{
 
         //Implicit 'Checkout' stage
 
-        stage('Restore'){
+        stage('Dotnet Restore'){
             steps{
                 sh 'dotnet restore ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
             }
@@ -20,7 +20,7 @@ pipeline{
             }            
         }
 
-        stage('Build'){
+        stage('Dotnet Build'){
             steps{
                 sh 'dotnet build ChemikPolice/ChemikPoliceApp/ChemikPoliceApp.csproj'
             }
@@ -76,7 +76,7 @@ pipeline{
             }             
         }        
 
-        stage('Docker Build') {
+        stage('Build Image') {
             steps {
                 sh(script: 'docker images -a')
                 sh(script: """
@@ -96,7 +96,7 @@ pipeline{
             }              
         }
 
-        stage('Docker Run') {
+        stage('Run Container') {
             steps {
                 sh(script: 'docker container run -d --name chemikpolice -p 32769:80 michalantolik/chemik-police:latest')
             }
@@ -110,7 +110,7 @@ pipeline{
             }               
         }
 
-        stage('Ping App') {
+        stage('Ping Containerized App') {
             steps {
                 pwsh(script: """
                     ls -l ./ChemikPolice/DevOps/ChemikPoliceApp-TestContainer/test-chemikpolice-container.ps1
@@ -129,7 +129,7 @@ pipeline{
             }   
         }
 
-        stage('Docker Stop') {
+        stage('Stop Container ') {
             steps {
                 sh 'docker container stop chemikpolice'
             }
@@ -143,7 +143,7 @@ pipeline{
             }               
         }
 
-        stage('Docker Remove') {
+        stage('Remove Container') {
             steps {
                 sh 'docker container rm chemikpolice'
             }
@@ -155,7 +155,23 @@ pipeline{
                     echo "Docker Remove stage failed :("
                 }
             }               
-        }  
+        }
+
+        stage('Push Container') {
+            steps {
+                echo "Workspace is $WORKSPACE"
+                script {
+                    docker.withRegistry("https://index.docker.io/v1/", "DockerHub-Credentials") {
+                        def dockerfilePath = "${WORKSPACE}/ChemikPolice/ChemikPoliceApp/Dockerfile"
+                        echo "${dockerfilePath}"
+                        def imageLatest = docker.build("michalantolik/chemik-police:latest", "-f ${dockerfilePath} .")
+                        def imageVersioned = docker.build("michalantolik/chemik-police:1.0", "-f ${dockerfilePath} .")
+                        imageLatest.push()
+                        imageVersioned.push()
+                    }
+                }
+            }
+        }        
     }
 
     post{
@@ -170,5 +186,5 @@ pipeline{
             }
         }
     }
-    
+
 }
