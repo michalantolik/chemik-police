@@ -11,9 +11,9 @@ USER root
 RUN apt-get update
 RUN apt-get install wget
 
-####################################################################################################
+##################################################################################################################################
 # Install .NET SDK - https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian
-####################################################################################################
+##################################################################################################################################
 
 # Add Microsoft package signing key to the list of trusted keys and add the package repository
 RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -24,9 +24,9 @@ RUN rm packages-microsoft-prod.deb
 RUN apt-get update
 RUN apt-get install -y dotnet-sdk-7.0
 
-####################################################################################################
+##################################################################################################################################
 # Install Docker - https://docs.docker.com/engine/install/debian/
-####################################################################################################
+##################################################################################################################################
 
 # Update the apt package index and install packages to allow apt to use a repository over HTTPS
 RUN apt-get update
@@ -46,3 +46,16 @@ RUN echo \
 # Install Docker
 RUN apt-get update 
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+##################################################################################################################################
+# Install PowerShell - https://learn.microsoft.com/en-us/powershell/scripting/install/install-debian?view=powershell-7.3
+##################################################################################################################################
+
+# Save the public repository GPG keys
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --yes --dearmor --output /usr/share/keyrings/microsoft.gpg
+
+# Register the Microsoft Product feed
+RUN sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod bullseye main" > /etc/apt/sources.list.d/microsoft.list'
+
+# Install PowerShell
+RUN apt update && apt install -y powershell
