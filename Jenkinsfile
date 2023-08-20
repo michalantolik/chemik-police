@@ -96,60 +96,6 @@ pipeline{
             }
         }
 
-        stage('Vulerability scan with Trivy') {
-            steps {
-                sh 'trivy image michalantolik/chemik-police:latest'
-                sh 'trivy image michalantolik/chemik-police:1.0'
-            }
-            post {
-                success {
-                    echo "Vulerability scan with Trivy stage succeedeed :)"
-                }
-                failure {
-                    echo "Vulerability scan with Trivy stage failed :("
-                }
-            }
-        }
-
-        stage('Setup Anchore Scanner') {
-            steps {
-                sh(script: """
-                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
-                    chmod +x ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
-                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
-                    bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
-                """)
-                sh(script: """
-                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
-                    chmod +x ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
-                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
-                    bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
-                """)
-                sh(script: """
-                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
-                    chmod +x ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
-                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
-                    bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
-                """)                
-            }
-        }        
-
-        stage('Vulerability scan with Anchore') {
-            steps {
-                sh "echo 'michalantolik/chemik-police:latest' > anchore_images"
-                sh "echo 'michalantolik/chemik-police:1.0' >> anchore_images"
-                anchore name: 'anchore_images'
-            }
-            post {
-                success {
-                    echo "Vulerability scan with Anchore stage succeedeed :)"
-                }
-                failure {
-                    echo "Vulerability scan with Anchore stage failed :("
-                }
-            }
-        }        
-
         stage('Run Container') {
             steps {
                 sh(script: 'docker container run -d --name chemikpolice -p 32769:80 michalantolik/chemik-police:latest')
@@ -225,7 +171,64 @@ pipeline{
                     }
                 }
             }
+        }
+
+        stage('Setup Anchore Scanner') {
+            steps {
+                sh(script: """
+                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
+                    chmod +x ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
+                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
+                    bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
+                """)
+                sh(script: """
+                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
+                    chmod +x ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
+                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
+                    bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
+                """)
+                sh(script: """
+                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
+                    chmod +x ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
+                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
+                    bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
+                """)                
+            }
         }        
+
+        stage('Vulerability scan'){
+            parallel{
+                stage('Vulerability scan with Trivy') {
+                    steps {
+                        sh 'trivy image michalantolik/chemik-police:latest'
+                        sh 'trivy image michalantolik/chemik-police:1.0'
+                    }
+                    post {
+                        success {
+                            echo "Vulerability scan with Trivy stage succeedeed :)"
+                        }
+                        failure {
+                            echo "Vulerability scan with Trivy stage failed :("
+                        }
+                    }
+                }
+                stage('Vulerability scan with Anchore') {
+                    steps {
+                        sh "echo 'michalantolik/chemik-police:latest' > anchore_images"
+                        sh "echo 'michalantolik/chemik-police:1.0' >> anchore_images"
+                        anchore name: 'anchore_images'
+                    }
+                    post {
+                        success {
+                            echo "Vulerability scan with Anchore stage succeedeed :)"
+                        }
+                        failure {
+                            echo "Vulerability scan with Anchore stage failed :("
+                        }
+                    }
+                }
+            }
+        }
     }
 
     post{
