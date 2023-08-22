@@ -1,0 +1,127 @@
+#########################################################################
+### Test app container
+#########################################################################
+
+docker container run --name myapp -d -p 8082:80 manojnair/myapp:v1
+
+#########################################################################
+### Login to Azure
+#########################################################################
+
+az login
+
+#########################################################################
+### Verify login
+#########################################################################
+
+az account show
+
+#########################################################################
+### Get AKS Kubernetes cluster credentials (created in Azure portal)
+#########################################################################
+
+az aks get-credentials --name chemikpolice-app --resource-group aks-chemikpolice-rg
+
+#########################################################################
+### Install "kubectl"
+#########################################################################
+
+az aks install-cli
+
+#########################################################################
+### Verify current "kubectl" context
+#########################################################################
+
+kubectl config current-context
+
+#########################################################################
+### Get cluster info
+#########################################################################
+
+kubectl get nodes
+
+kubectl get deployments
+
+kubectl get pods
+
+#########################################################################
+### Deploy webapp to AKS
+#########################################################################
+
+kubectl create deployment chemikpolice-app --image=manojnair/myapp:v1 --replicas=1
+
+kubectl get deployments
+
+kubectl get pods
+
+#########################################################################
+### Create AKC Load Balancer Service with public IP (to access web app)
+#########################################################################
+
+kubectl expose deployment chemikpolice-app --type=LoadBalancer --port=80 --target-port=80
+
+### ... monitor creation of Load Balancer service
+### ... get external IP address of Load Balancer
+### ... created in the previous step
+
+kubectl get svc --watch     
+
+### Connect to web app
+
+Start-Process htttp://[external IP address of Load Balancer]
+
+#########################################################################
+### Scale deployment manually
+#########################################################################
+
+kubectl get deployments
+
+kubectl get svc
+
+kubectl get deployment --watch ### watch deployment in separate window
+
+kubectl scale deployment chemikpolice-app --replicas=3
+
+kubectl get deployments
+
+kubectl get pods -l app=chemikpolice-app
+
+kubectl get nodes
+
+#########################################################################
+### Scale nodes manually
+#########################################################################
+
+kubectl get nodes
+
+az aks scale `
+	--resource-group aks-chemikpolice-rg `
+	--name chemikpolice-app `
+	--node-count 2 `
+	--no-wait
+
+az aks nodepool show --resource-group aks-chemikpolice-rg --name agentpool --cluster-name chemikpolice-app --query "[count,provisioningState]"
+
+kubectl get nodes
+
+kubectl get deployment chemikpolice-app
+
+kubectl scale deployment chemikpolice-app --replicas=3
+
+kubectl get deployment chemikpolice-app
+
+#########################################################################
+### Updating the Application
+#########################################################################
+
+kubectl rollout history deployment/chemikpolice-app
+
+kubectl describe deployment chemikpolice-app
+
+kubectl set image `
+	deployment/chemikpolice-app `
+	chemikpolice-app=manojnair/myapp:v2
+
+kubectl describe deployment chemikpolice-app
+
+kubectl rollout history deployment/chemikpolice-app
