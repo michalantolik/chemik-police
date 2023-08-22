@@ -69,3 +69,46 @@ RUN wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --
 RUN echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | tee -a /etc/apt/sources.list.d/trivy.list
 RUN apt-get update
 RUN apt-get install trivy
+
+##################################################################################################################################
+# Install Azure CLI - https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt
+##################################################################################################################################
+
+RUN apt-get update
+RUN apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
+
+RUN mkdir -p /etc/apt/keyrings
+RUN curl -sLS https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/keyrings/microsoft.gpg > /dev/null
+RUN chmod go+r /etc/apt/keyrings/microsoft.gpg
+
+RUN AZ_REPO=$(lsb_release -cs)
+RUN echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list
+
+RUN apt-get update
+RUN apt-get install azure-cli -y
+
+RUN az version
+
+##################################################################################################################################
+# Install Terraform - https://developer.hashicorp.com/terraform/tutorials/azure-get-started/install-cli
+##################################################################################################################################
+
+RUN apt-get update && apt-get install -y gnupg software-properties-common
+
+RUN wget -O- https://apt.releases.hashicorp.com/gpg | \
+        gpg --dearmor | \
+        tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+RUN gpg --no-default-keyring \
+        --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+        --fingerprint
+
+RUN echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+        https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+        tee /etc/apt/sources.list.d/hashicorp.list
+
+RUN apt update
+RUN apt-get install terraform
+RUN terraform -help
+
+
