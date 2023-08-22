@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chemikpolice-app
+  labels:
+    app: chemikpolice-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: chemikpolice-app
+  template:
+    metadata:
+      labels:
+        app: chemikpolice-app
+    spec:
+      containers:
+      - name: chemikpolice-app
+        image: manojnair/myapp:v2
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: chemikpolice-app
+spec:
+  selector:
+    app: chemikpolice-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
