@@ -1,8 +1,8 @@
 #! /bin/sh
 
-if [ -d "anchore"]
+if [ -d "anchore" ]
 then
-    echo "Removing anchore directory"
+    echo 'Removing "anchore" directory'
     rm -rf "anchore"
 fi
 
