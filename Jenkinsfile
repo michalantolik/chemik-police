@@ -182,12 +182,6 @@ pipeline{
                     bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
                 """)
                 sh(script: """
-                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
-                    chmod +x ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
-                    ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
-                    bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/install-anchore-cli.sh
-                """)
-                sh(script: """
                     ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
                     chmod +x ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
                     ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
