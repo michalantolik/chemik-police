@@ -236,18 +236,6 @@ pipeline{
                 }
             }
         }
-
-        // https://app.pluralsight.com/course-player?clipId=c03028b7-571c-4a45-b07d-6de677b28f42
-        // https://app.pluralsight.com/course-player?clipId=63fbfe90-6425-479a-96d3-f5335a99fac5
-        // https://plugins.jenkins.io/azure-credentials/
-        stage('Login to Azure') {
-            steps {           
-                withCredentials([azureServicePrincipal('jenkins-app')]) {
-                    sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
-                    sh 'az account set --subscription $AZURE_SUBSCRIPTION_ID'
-                }
-            }
-        }
     }
 
     post{
