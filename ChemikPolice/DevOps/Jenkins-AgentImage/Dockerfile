@@ -58,11 +58,20 @@ RUN apt-get update
 # Install Dependencies
 #RUN apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
 
-# install Python3 from Debian’s APT repository
+# Install Python3 from Debian’s APT repository
 RUN apt-get install python3 -y
 
-# install Python3 PIP from Debian’s APT repository
+# Install Python3 PIP from Debian’s APT repository
 RUN apt-get install python3-pip -y
+
+# Install PIPX from Debian’s APT repository
+RUN apt-get install pipx -y
+
+# Install Anchore CLI
+# https://discuss.python.org/t/getting-requirements-to-build-wheel-did-not-run-successfully-exit-code-1/30365
+RUN echo "Cython<3" > cython_constraint.txt
+RUN PIP_CONSTRAINT=cython_constraint.txt pipx install anchorecli
+RUN rm cython_constraint.txt
 
 ##################################################################################################################################
 # Install PowerShell - https://learn.microsoft.com/en-us/powershell/scripting/install/install-debian?view=powershell-7.3
