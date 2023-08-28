@@ -12,10 +12,10 @@ pipeline{
             }
             post {
                 success {
-                    echo "Restore stage succeedeed :)"
+                    echo "Dotnet Restore stage succeedeed :)"
                 }
                 failure {
-                    echo "Restore stage failed :("
+                    echo "Dotnet Restore stage failed :("
                 }
             }
         }
@@ -26,57 +26,57 @@ pipeline{
             }
             post {
                 success {
-                    echo "Build stage succeedeed :)"
+                    echo "Dotnet Build stage succeedeed :)"
                 }
                 failure {
-                    echo "Build stage failed :("
+                    echo "Dotnet Build stage failed :("
                 }
             } 
         }
 
-        stage('Run MSTest tests'){
+        stage('Run MSTest Tests'){
             steps{
                 sh 'dotnet test ChemikPolice/ChemikPoliceMsTests/ChemikPoliceMsTests.csproj'
             }
             post {
                 success {
-                    echo "MSTest stage succeedeed :)"
+                    echo "Run MSTest Tests stage succeedeed :)"
                 }
                 failure {
-                    echo "MSTest stage failed :("
+                    echo "Run MSTest Tests stage failed :("
                 }
             }
         }
 
-        stage('Run NUnit tests'){
+        stage('Run NUnit Tests'){
             steps{
                 sh 'dotnet test ChemikPolice/ChemikPoliceNUnitTests/ChemikPoliceNUnitTests.csproj'
             }
             post {
                 success {
-                    echo "NUnit stage succeedeed :)"
+                    echo "Run NUnit Tests stage succeedeed :)"
                 }
                 failure {
-                    echo "NUnit stage failed :("
+                    echo "Run NUnit Tests stage failed :("
                 }
             }
         }
 
-        stage('Run XUnit tests'){
+        stage('Run XUnit Tests'){
             steps{
                 sh 'dotnet test ChemikPolice/ChemikPoliceXUnitTests/ChemikPoliceXUnitTests.csproj'
             }
             post {
                 success {
-                    echo "XUnit stage succeedeed :)"
+                    echo "Run XUnit Tests stage succeedeed :)"
                 }
                 failure {
-                    echo "XUnit stage failed :("
+                    echo "Run XUnit Tests stage failed :("
                 }
             }
         }        
 
-        stage('Build Image') {
+        stage('Build App Docker Image') {
             steps {
                 sh(script: 'docker images -a')
                 sh(script: """
@@ -88,24 +88,24 @@ pipeline{
             }
             post {
                 success {
-                    echo "Docker Build stage succeedeed :)"
+                    echo "Build App Docker Image' stage succeedeed :)"
                 }
                 failure {
-                    echo "Docker Build stage failed :("
+                    echo "Build App Docker Image' stage failed :("
                 }
             }
-        }
+        }        
 
-        stage('Run Container') {
+        stage('Run Containerized App') {
             steps {
                 sh(script: 'docker container run -d --name chemikpolice -p 32769:80 michalantolik/chemik-police:latest')
             }
             post {
                 success {
-                    echo "Docker Run stage succeedeed :)"
+                    echo "Run Containerized App stage succeedeed :)"
                 }
                 failure {
-                    echo "Docker Run stage failed :("
+                    echo "Run Containerized App stage failed :("
                 }
             } 
         }
@@ -121,59 +121,43 @@ pipeline{
             }
             post {
                 success {
-                    echo "Ping App stage succeedeed :)"
+                    echo "Ping Containerized App stage succeedeed :)"
                 }
                 failure {
-                    echo "Ping App stage failed :("
+                    echo "Ping Containerized App stage failed :("
                 }
             }
         }
 
-        stage('Stop Container ') {
+        stage('Stop Containerized App') {
             steps {
                 sh 'docker container stop chemikpolice'
             }
             post {
                 success {
-                    echo "Docker Stop stage succeedeed :)"
+                    echo "Stop Containerized App stage succeedeed :)"
                 }
                 failure {
-                    echo "Docker Stop stage failed :("
+                    echo "Stop Containerized App stage failed :("
                 }
             }
         }
 
-        stage('Remove Container') {
+        stage('Remove Stopped App Container') {
             steps {
                 sh 'docker container rm chemikpolice'
             }
             post {
                 success {
-                    echo "Docker Remove stage succeedeed :)"
+                    echo "Remove Stopped App Container stage succeedeed :)"
                 }
                 failure {
-                    echo "Docker Remove stage failed :("
+                    echo "Remove Stopped App Container stage failed :("
                 }
             }
         }
 
-        stage('Push Container') {
-            steps {
-                echo "Workspace is $WORKSPACE"
-                script {
-                    docker.withRegistry("https://index.docker.io/v1/", "DockerHub-Credentials") {
-                        def dockerfilePath = "${WORKSPACE}/ChemikPolice/ChemikPoliceApp/Dockerfile"
-                        echo "${dockerfilePath}"
-                        def imageLatest = docker.build("michalantolik/chemik-police:latest", "-f ${dockerfilePath} .")
-                        def imageVersioned = docker.build("michalantolik/chemik-police:1.0", "-f ${dockerfilePath} .")
-                        imageLatest.push()
-                        imageVersioned.push()
-                    }
-                }
-            }
-        }
-
-        stage('Setup Anchore Scanner') {
+        stage('Setup Anchore Docker Image Scanner') {
             steps {
                 sh(script: """
                     ls -l ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/compose-anchore-engine.sh
@@ -188,38 +172,67 @@ pipeline{
                     bash ChemikPolice/DevOps/Anchore-Setup-in-Jenkins/set-anchore-env-variables.sh
                 """)                
             }
-        }        
+            post {
+                success {
+                    echo "Setup Anchore Docker Image Scanner stage succeedeed :)"
+                }
+                failure {
+                    echo "Setup Anchore Docker Image Scanner stage failed :("
+                }
+            }            
+        }
 
-        stage('Vulerability scan'){
-            parallel{
-                stage('Vulerability scan with Trivy') {
-                    steps {
-                        sh 'trivy image michalantolik/chemik-police:latest'
-                        sh 'trivy image michalantolik/chemik-police:1.0'
-                    }
-                    post {
-                        success {
-                            echo "Vulerability scan with Trivy stage succeedeed :)"
-                        }
-                        failure {
-                            echo "Vulerability scan with Trivy stage failed :("
-                        }
+        stage('Push App Docker Image to Docker Hub') {
+            steps {
+                echo "Workspace is $WORKSPACE"
+                script {
+                    docker.withRegistry("https://index.docker.io/v1/", "DockerHub-Credentials") {
+                        def dockerfilePath = "${WORKSPACE}/ChemikPolice/ChemikPoliceApp/Dockerfile"
+                        echo "${dockerfilePath}"
+                        def imageLatest = docker.build("michalantolik/chemik-police:latest", "-f ${dockerfilePath} .")
+                        def imageVersioned = docker.build("michalantolik/chemik-police:1.0", "-f ${dockerfilePath} .")
+                        imageLatest.push()
+                        imageVersioned.push()
                     }
                 }
-                stage('Vulerability scan with Anchore') {
-                    steps {
-                        sh "echo 'michalantolik/chemik-police:latest' > anchore_images"
-                        sh "echo 'michalantolik/chemik-police:1.0' >> anchore_images"
-                        anchore name: 'anchore_images'
-                    }
-                    post {
-                        success {
-                            echo "Vulerability scan with Anchore stage succeedeed :)"
-                        }
-                        failure {
-                            echo "Vulerability scan with Anchore stage failed :("
-                        }
-                    }
+            }
+            post {
+                success {
+                    echo "Push App Docker Image to Docker Hub stage succeedeed :)"
+                }
+                failure {
+                    echo "Push App Docker Image to Docker Hub stage failed :("
+                }
+            }            
+        }
+
+        stage('Scan App Docker Image vulerabilities with Anchore') {
+            steps {
+                sh "echo 'michalantolik/chemik-police:latest' > anchore_images"
+                sh "echo 'michalantolik/chemik-police:1.0' >> anchore_images"
+                anchore name: 'anchore_images'
+            }
+            post {
+                success {
+                    echo "Scan App Docker Image vulerabilities with Anchore stage succeedeed :)"
+                }
+                failure {
+                    echo "Scan App Docker Image vulerabilities with Anchore stage failed :("
+                }
+            }
+        }
+
+        stage('Scan App Docker Image vulerabilities with Trivy') {
+            steps {
+                sh 'trivy image michalantolik/chemik-police:latest'
+                sh 'trivy image michalantolik/chemik-police:1.0'
+            }
+            post {
+                success {
+                    echo "VScan App Docker Image vulerabilities with Trivy stage succeedeed :)"
+                }
+                failure {
+                    echo "Scan App Docker Image vulerabilities with Trivy stage failed :("
                 }
             }
         }
