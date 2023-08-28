@@ -48,6 +48,23 @@ RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 ##################################################################################################################################
+# Install Python3     - https://cloudinfrastructureservices.co.uk/how-to-install-python-3-in-debian-11-10/
+# Install Python3 PIP - https://linuxhint.com/install-python-pip-debian/
+##################################################################################################################################
+
+# Update the local package index and repositories as follows.
+RUN apt-get update
+
+# Install Dependencies
+#RUN apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
+
+# install Python3 from Debian’s APT repository
+RUN apt-get install python3 -y
+
+# install Python3 PIP from Debian’s APT repository
+RUN apt-get install python3-pip -y
+
+##################################################################################################################################
 # Install PowerShell - https://learn.microsoft.com/en-us/powershell/scripting/install/install-debian?view=powershell-7.3
 ##################################################################################################################################
 
