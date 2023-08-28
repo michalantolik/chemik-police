@@ -182,30 +182,6 @@ pipeline{
             }            
         }
 
-        stage('Push App Docker Image to Docker Hub') {
-            steps {
-                echo "Workspace is $WORKSPACE"
-                script {
-                    docker.withRegistry("https://index.docker.io/v1/", "DockerHub-Credentials") {
-                        def dockerfilePath = "${WORKSPACE}/ChemikPolice/ChemikPoliceApp/Dockerfile"
-                        echo "${dockerfilePath}"
-                        def imageLatest = docker.build("michalantolik/chemik-police:latest", "-f ${dockerfilePath} .")
-                        def imageVersioned = docker.build("michalantolik/chemik-police:1.0", "-f ${dockerfilePath} .")
-                        imageLatest.push()
-                        imageVersioned.push()
-                    }
-                }
-            }
-            post {
-                success {
-                    echo "Push App Docker Image to Docker Hub stage succeedeed :)"
-                }
-                failure {
-                    echo "Push App Docker Image to Docker Hub stage failed :("
-                }
-            }            
-        }
-
         stage('Scan App Docker Image vulerabilities with Anchore') {
             steps {
                 sh "echo 'michalantolik/chemik-police:latest' > anchore_images"
@@ -236,6 +212,30 @@ pipeline{
                 }
             }
         }
+
+        stage('Push App Docker Image to Docker Hub') {
+            steps {
+                echo "Workspace is $WORKSPACE"
+                script {
+                    docker.withRegistry("https://index.docker.io/v1/", "DockerHub-Credentials") {
+                        def dockerfilePath = "${WORKSPACE}/ChemikPolice/ChemikPoliceApp/Dockerfile"
+                        echo "${dockerfilePath}"
+                        def imageLatest = docker.build("michalantolik/chemik-police:latest", "-f ${dockerfilePath} .")
+                        def imageVersioned = docker.build("michalantolik/chemik-police:1.0", "-f ${dockerfilePath} .")
+                        imageLatest.push()
+                        imageVersioned.push()
+                    }
+                }
+            }
+            post {
+                success {
+                    echo "Push App Docker Image to Docker Hub stage succeedeed :)"
+                }
+                failure {
+                    echo "Push App Docker Image to Docker Hub stage failed :("
+                }
+            }            
+        }        
     }
 
     post{
