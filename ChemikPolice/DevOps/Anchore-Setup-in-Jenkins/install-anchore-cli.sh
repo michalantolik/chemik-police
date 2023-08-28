@@ -1,5 +1,5 @@
-#! /bin/sh
+# ! /bin/sh
 
-apt-get update
+# apt-get update
 # python3 -m pip install --upgrade pip
-pip install --user --upgrade anchorecli
+# pip install --user --upgrade anchorecli
