@@ -10,4 +10,4 @@ The purpose of this repository is to present various DevOps related tools and te
 
 ## CI/CD Pipeline
 
-<img src="https://michalantolik.blob.core.windows.net/chemik-police/Jenkins_Pipeline_Screenshot.png" width="1000">
+
