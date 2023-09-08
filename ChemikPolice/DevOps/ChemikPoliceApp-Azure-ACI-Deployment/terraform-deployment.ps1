@@ -32,6 +32,6 @@ Set-AzureRmContext "My Sub"
 
 terraform validate
 
-terraform plan -out plan.-out
+terraform plan -out plan.out
 
 terraform apply plan.out
