@@ -26,13 +26,29 @@ It presents how to:
 
 ## Build custom Jenkins Docker image with support for .NET 7 SDK
 
-👉 [Dockerfile](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage/Dockerfile) has been created to build Jenkins Docker image with all the tools required by the CI/CD pipeline:
+👉 [ps-build.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage/ps-build.ps1) builds custom Jenkins Docker image
+
+👉 [Dockerfile](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage/Dockerfile) defines Jenkins Docker image with all the tools required by the CI/CD pipeline:
 
 - [NET SDK 7.0](https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian)
 - [Docker Engine](https://docs.docker.com/engine/install/debian/)
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- [Terraform](https://developer.hashicorp.com/terraform/tutorials/azure-get-started/install-cli)
+- [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/install-debian?view=powershell-7.3)
 - [Python 3](https://cloudinfrastructureservices.co.uk/how-to-install-python-3-in-debian-11-10/)
-- [PIP 3](https://linuxhint.com/install-python-pip-debian/)
+- [PIPX 3](https://linuxhint.com/install-python-pip-debian/)
+- [Trivy](https://aquasecurity.github.io/trivy/v0.44/getting-started/installation/)
+- [Anchore CLI](https://docs.anchore.com/current/docs/deployment/anchore_cli/)
 
+## Publish custom Jenkins Docker image to Docker Hub
+
+👉 [ps-push.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage/ps-push.ps1) publishes custom Docker image to Docker Hub repository: [michalantolik/jenkins-agent-dotnet](https://hub.docker.com/repository/docker/michalantolik/jenkins-agent-dotnet/general)
+
+## Run Jenkins from a Docker image on a localhost
+
+👉 [ps-start-jenkins.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher/ps-start-jenkins.ps1) runs Jenkins and MailHog SMTP server as Docker containers on a localhost using [compose.yaml](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher/compose.yaml)
+
+👉 [ps-stop-jenkins.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher/ps-stop-jenkins.ps1) stops Jenkins and MailHog SMTP server containers
 
 ## CI/CD Pipeline
 
