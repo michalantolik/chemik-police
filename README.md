@@ -8,7 +8,7 @@ It presents how to:
 
 - Build custom Jenkins Docker image with support for .NET 7 SDK 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage) 👉 [docs](https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian)
 - Publish custom Jenkins Docker image to Docker Hub 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage) 👉 [dockerhub](https://hub.docker.com/repository/docker/michalantolik/jenkins-agent-dotnet/general)
-- Run Jenkins from a Docker image on a localhost 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher) 👉 [docs](https://www.jenkins.io/doc/book/installing/docker/) 👉
+- Run Jenkins from a Docker image on a localhost 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher) 👉 [docs](https://www.jenkins.io/doc/book/installing/docker/)
 - Run Jenkins from a Docker image in Azure Container Instances (ACI) 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-AzureServerLauncher) 👉 [docs](https://www.jenkins.io/doc/book/installing/docker/)
 - Create Jenkins CI/CD pipeline as code for ASP.NET 7 web app 👉 [repo](https://github.com/michalantolik/chemik-police/blob/main/Jenkinsfile) 👉 [docs](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/)
 - Deploy ASP.NET 7 web app to Azure Container Instances (ACI) 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
@@ -42,13 +42,17 @@ It presents how to:
 
 ## Publish custom Jenkins Docker image to Docker Hub
 
-👉 [ps-push.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage/ps-push.ps1) publishes custom Docker image to Docker Hub repository: [michalantolik/jenkins-agent-dotnet](https://hub.docker.com/repository/docker/michalantolik/jenkins-agent-dotnet/general)
+👉 [ps-push.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage/ps-push.ps1) pushes custom Docker image to Docker Hub repository: [michalantolik/jenkins-agent-dotnet](https://hub.docker.com/repository/docker/michalantolik/jenkins-agent-dotnet/general)
 
 ## Run Jenkins from a Docker image on a localhost
 
-👉 [ps-start-jenkins.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher/ps-start-jenkins.ps1) runs Jenkins and MailHog SMTP server as Docker containers on a localhost using [compose.yaml](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher/compose.yaml)
+👉 [ps-start-jenkins.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher/ps-start-jenkins.ps1) starts Jenkins and MailHog SMTP server as containers on a localhost using [compose.yaml](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher/compose.yaml)
 
 👉 [ps-stop-jenkins.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher/ps-stop-jenkins.ps1) stops Jenkins and MailHog SMTP server containers
+
+## Run Jenkins from a Docker image in Azure Container Instances (ACI)
+
+...
 
 ## CI/CD Pipeline
 
