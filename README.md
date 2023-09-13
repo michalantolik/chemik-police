@@ -58,8 +58,9 @@ It presents how to:
 
 ## Create Jenkins CI/CD pipeline as code for ASP.NET 7 web app
 
-👉 [Jenkinsfile](https://github.com/michalantolik/chemik-police/blob/main/Jenkinsfile) (Jenkins pipeline)
+👉 [Dockerfile](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage/Dockerfile) defines Jenkins Docker image with all the tools required by the CI/CD pipeline
 
-👉 [Dockerfile](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-AgentImage/Dockerfile) (Jenkins agent image)
+👉 [Jenkinsfile](https://github.com/michalantolik/chemik-police/blob/main/Jenkinsfile) defines Jenkins CI/CD pipeline
+
 
 <img src="https://michalantolik.blob.core.windows.net/chemik-police/Jenkins_Pipeline_1.png" width="1000">
