@@ -13,7 +13,7 @@ variable "main_resource_group_location" {
 variable "main_resource_group_name" {
   description = "Name of the resource group to keep Storage Account"
   type = string
-  default = "common-rg"
+  default = "storage-chemikpolice-rg"
 }
 
 variable "main_storage_account_name" {
@@ -23,14 +23,14 @@ variable "main_storage_account_name" {
 }
 
 variable "jenkinshome_file_share_name" {
+  description = "Name of the Azure File Share for mounting '/var/jenkins_home' from the docker container"  
   type = string
-  description = "Name of the Azure File Share for mounting '/var/jenkins_home' from the docker container"
   default = "chemikpolice-jenkins-home"
 }
 
 variable "dockrersocket_file_share_name" {
+  description = "Name of the Azure File Share for mounting '/var/run/docker.sock' from the docker container"  
   type = string
-  description = "Name of the Azure File Share for mounting '/var/run/docker.sock' from the docker container"
   default = "chemikpolice-dockerd-socket"
 }
 

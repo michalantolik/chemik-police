@@ -99,7 +99,7 @@ resource "azurerm_container_group" "aci" {
     volume {
       name                 = "docker-socket-volume"
       mount_path           = "/var/run/docker.sock"
-      #empty_dir            = true
+      empty_dir            = true
     }
 
     ports {
