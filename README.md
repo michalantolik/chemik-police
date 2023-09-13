@@ -52,9 +52,9 @@ It presents how to:
 
 ## Run Jenkins from a Docker image in Azure Container Instances (ACI)
 
-👉 [azcli-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-AzureServerLauncher/azcli-deployment.azcli) deploys Jenkins running in a Docker container to Azure Container Instances (ACI) [using Azure CLI](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
+👉 [azcli-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-AzureServerLauncher/azcli-deployment.azcli) deploys Jenkins to Azure Container Instances (ACI) [using Azure CLI](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
 
-👉 [terraform-deployment.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-AzureServerLauncher/terraform-deployment/terraform-deployment.ps1) deploys Jenkins running in a Docker container to Azure Container Instances (ACI) [using Terraform](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-terraform)
+👉 [terraform-deployment.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/Jenkins-AzureServerLauncher/terraform-deployment/terraform-deployment.ps1) deploys Jenkins to Azure Container Instances (ACI) [using Terraform](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-terraform)
 
 ## Create Jenkins CI/CD pipeline as code for ASP.NET 7 web app
 
