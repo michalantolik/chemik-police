@@ -10,7 +10,7 @@
 # DNS:   chemikpolice-app
 # IP:    Public
 #
-# DOCS:  https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-bicep?tabs=CLI
+# DOCS:  https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template
 #
 #################################################################################################################
 
