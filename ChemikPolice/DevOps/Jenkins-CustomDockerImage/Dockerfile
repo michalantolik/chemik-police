@@ -68,6 +68,7 @@ RUN apt-get install python3-pip -y
 RUN apt-get install pipx -y
 
 # Install Anchore CLI
+# https://docs.anchore.com/current/docs/deployment/anchore_cli/
 # https://discuss.python.org/t/getting-requirements-to-build-wheel-did-not-run-successfully-exit-code-1/30365
 RUN echo "Cython<3" > cython_constraint.txt
 RUN PIP_CONSTRAINT=cython_constraint.txt pipx install anchorecli
