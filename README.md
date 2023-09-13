@@ -64,3 +64,7 @@ It presents how to:
 
 
 <img src="https://michalantolik.blob.core.windows.net/chemik-police/Jenkins_Pipeline_1.png" width="1000">
+
+## Deploy ASP.NET 7 web app to Azure Container Instances (ACI)
+
+👉 [arm-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/arm-deployment.azcli) deploys ChemikPolice to Azure Container Instances (ACI) [using ARM template](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template)
