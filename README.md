@@ -13,6 +13,17 @@ It presents how to:
 - Run Jenkins from a Docker image in Azure Container Instances (ACI) 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-AzureServerLauncher) 👉 [docs](https://www.jenkins.io/doc/book/installing/docker/)
 - Create Jenkins CI/CD pipeline as code for ASP.NET 7 web app 👉 [repo](https://github.com/michalantolik/chemik-police/blob/main/Jenkinsfile) 👉 [docs](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/)
 - Deploy ASP.NET 7 web app to Azure Container Instances (ACI) 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
+  
+  👉 ... using ARM template 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/arm-deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template)
+  
+  👉 ... using Azure CLI 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/azcli-deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
+  
+  👉 ... using Bicep 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/bicep-deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-bicep?tabs=CLI)
+
+  👉 ... using PowerShell 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/ps-deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell)
+
+  👉 ... using Terraform 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/terraform-deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-terraform)
+  
 - Deploy ASP.NET 7 web app to Azure Kubernetes Service (AKS) 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-AKS-Deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
 
 ## Technology stack
