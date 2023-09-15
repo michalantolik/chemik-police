@@ -6,6 +6,7 @@ This is a demo project presenting various DevOps tools and technologies.
 
 It presents how to:
 
+- Generate Dockerfile for ASP.NET 7 web app using VS Code Docker extension 👉 [repo](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/ChemikPoliceApp/Dockerfile) 👉 [docs](https://code.visualstudio.com/docs/containers/overview)
 - Build custom Jenkins Docker image with support for .NET 7 SDK 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage) 👉 [docs](https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian)
 - Publish custom Jenkins Docker image to Docker Hub 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage) 👉 [dockerhub](https://hub.docker.com/repository/docker/michalantolik/jenkins-agent-dotnet/general)
 - Run Jenkins from a Docker image on a localhost 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-LocalServerLauncher) 👉 [docs](https://www.jenkins.io/doc/book/installing/docker/)
