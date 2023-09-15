@@ -30,6 +30,8 @@ Set-AzureRmContext "My Sub"
 ### Deploy container instance to ACI
 #################################################################################################################
 
+terraform init
+
 terraform validate
 
 terraform plan -out plan.out
