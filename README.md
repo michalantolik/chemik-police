@@ -26,6 +26,11 @@ It presents how to:
   
 - Deploy ASP.NET 7 web app to Azure Kubernetes Service (AKS) 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-AKS-Deployment) 👉 [docs](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
 
+  👉 ... using imperative way 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-AKS-Deployment/imperative) 👉 [docs](https://app.pluralsight.com/course-player?clipId=da3f2957-fe24-4fba-aa0f-dac06cbd1f81)
+
+  👉 ... using declarative way 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-AKS-Deployment/declarative) 👉 [docs](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
+ 
+
 ## Technology stack
 
 <img src="https://michalantolik.blob.core.windows.net/chemik-police/.Tech-Stack.png" width="400">
@@ -79,12 +84,19 @@ It presents how to:
 
 ## Deploy ASP.NET 7 web app to Azure Container Instances (ACI)
 
-👉 [arm-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/arm-deployment.azcli) deploys ChemikPolice to Azure Container Instances (ACI) [using ARM template](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template)
+👉 [arm-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/arm-deployment.azcli) deploys ChemikPolice to Azure Container Instances (ACI) using [ARM template](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template)
 
-👉 [azcli-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/azcli-deployment/azcli-deployment.azcli) deploys ChemikPolice to Azure Container Instances (ACI) [using Azure CLI](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
+👉 [azcli-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/azcli-deployment/azcli-deployment.azcli) deploys ChemikPolice to Azure Container Instances (ACI) using [Azure CLI](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
 
-👉 [bicep-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/bicep-deployment) deploys ChemikPolice to Azure Container Instances (ACI) [using Bicep](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-bicep?tabs=CLI)
+👉 [bicep-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/bicep-deployment) deploys ChemikPolice to Azure Container Instances (ACI) using [Bicep](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-bicep?tabs=CLI)
 
-👉 [ps-deployment.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/ps-deployment) deploys ChemikPolice to Azure Container Instances (ACI) [using PowerShell](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell)
+👉 [ps-deployment.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/ps-deployment) deploys ChemikPolice to Azure Container Instances (ACI) using [PowerShell](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell)
 
-👉 [terraform-deployment.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/terraform-deployment/terraform-deployment.ps1) deploys ChemikPolice to Azure Container Instances (ACI) [using Terraform](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-terraform)
+👉 [terraform-deployment.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-ACI-Deployment/terraform-deployment/terraform-deployment.ps1) deploys ChemikPolice to Azure Container Instances (ACI) using [Terraform](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-terraform)
+
+## Deploy ASP.NET 7 web app to Azure Kubernetes Service (AKS)
+
+👉 [kubectl-imperative-deployment.azcli](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-AKS-Deployment/imperative/kubectl-imperative-deployment.azcli) deploys ChemikPolice to Azure Kubernetes Service (AKS) using [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+
+👉 [kubectl-delarative-deployment.ps1](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/DevOps/ChemikPoliceApp-Azure-AKS-Deployment/declarative/kubectl-delarative-deployment.ps1) deploys ChemikPolice to Azure Kubernetes Service (AKS) using [kubectl](https://kubernetes.io/docs/reference/kubectl/) and [YAML manifest](https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
+
