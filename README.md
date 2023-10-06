@@ -2,7 +2,7 @@
 
 ## Repository overview
 
-This is a demo project presenting various DevOps tools and technologies.
+This is a demo project presenting various DevOps tools and technologies. It uses Jenkins build system.
 
 It presents how to:
 
