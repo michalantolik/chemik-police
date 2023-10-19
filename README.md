@@ -2,9 +2,9 @@
 
 ## Repository overview
 
-This is a demo project presenting various DevOps tools and technologies. It uses Jenkins build system.
+This is a project for learning some of the DevOps tools and technologies.
 
-It presents how to:
+Learning Goals:
 
 - Generate Dockerfile for ASP.NET 7 web app using VS Code Docker extension 👉 [repo](https://github.com/michalantolik/chemik-police/blob/main/ChemikPolice/ChemikPoliceApp/Dockerfile) 👉 [docs](https://code.visualstudio.com/docs/containers/overview)
 - Build custom Jenkins Docker image with support for .NET 7 SDK 👉 [repo](https://github.com/michalantolik/chemik-police/tree/main/ChemikPolice/DevOps/Jenkins-CustomDockerImage) 👉 [docs](https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian)
